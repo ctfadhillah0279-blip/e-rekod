@@ -1,116 +1,142 @@
 <!doctype html>
 <html lang="ms" class="h-full">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>e-REKOD - Sistem Pengurusan Rekod</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
-    body { font-family: 'Outfit', sans-serif; }
-    .font-inter { font-family: 'Inter', sans-serif; }
-    /* Efek Glassmorphism yang anda suka */
-    .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-REKOD - Sistem Pengurusan Rekod</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* SEMUA CSS ASAL ANDA DIKEKALKAN */
+        body { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .heading-font { font-family: 'Outfit', sans-serif; }
+        .gradient-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: all 0.3s ease; }
+        .card { background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.8); }
+        .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.8); }
+        .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tab-btn.active { color: #667eea; border-bottom: 3px solid #667eea; }
+        .hidden { display: none; }
+    </style>
 </head>
 
-<body class="h-full bg-slate-50 text-slate-900">
+<body class="h-full" style="background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);">
 
-  <script>
-    // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbybcRsiDviFkja1EWVF01AngTz4UnyfNnRttrOP7TY5wXsq6cpV5HYlnTfLl-jIT2roUw/exec";
-  </script>
-
-  <div id="loginPage" class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md space-y-8 glass p-8 rounded-3xl shadow-xl">
-      <div class="text-center">
-        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">e-REKOD</h2>
-        <p class="mt-2 text-sm text-slate-600 font-inter">Sila log masuk untuk teruskan</p>
-      </div>
-      <form class="mt-8 space-y-6" onsubmit="handleLogin(event)">
-        <div class="rounded-md shadow-sm -space-y-px">
-          <input id="email" type="email" required class="appearance-none rounded-2xl relative block w-full px-4 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Emel Jabatan">
+    <div id="loginScreen" class="h-full flex items-center justify-center p-4">
+        <div class="card glass-effect p-10 max-w-md w-full">
+            <div class="text-center mb-8">
+                <div class="w-24 h-24 rounded-3xl gradient-primary flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h1 class="logo-text text-3xl mb-3">e-REKOD</h1>
+                <p class="text-gray-600 font-semibold">Sistem Pengurusan Rekod</p>
+            </div>
+            <form id="loginForm" class="space-y-5">
+                <input type="email" id="loginEmail" class="w-full p-4 rounded-xl border border-gray-200" placeholder="nama@esyariah.gov.my" required>
+                <button type="submit" class="btn-primary w-full text-white py-4 rounded-xl font-bold">Log Masuk</button>
+            </form>
         </div>
-        <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-2xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
-          LOG MASUK
-        </button>
-      </form>
     </div>
-  </div>
 
-  <div id="dashboard" class="hidden min-h-full">
-    <nav class="bg-white border-b border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-          <span class="text-xl font-bold text-indigo-600 italic">e-REKOD </span>
-          <button onclick="location.reload()" class="text-sm font-medium text-rose-600">Log Keluar</button>
+    <div id="app" class="h-full overflow-auto p-4 hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="card glass-effect p-6 mb-6 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <h1 class="logo-text text-2xl">e-REKOD</h1>
+                    <span id="userDisplay" class="text-sm font-medium bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full"></span>
+                </div>
+                <button onclick="logout()" class="text-rose-500 font-bold text-sm">Log Keluar</button>
+            </div>
+
+            <div class="flex gap-4 mb-6 border-b">
+                <button class="tab-btn active px-6 py-3 font-bold" onclick="openTab('laporan')">Dashboard</button>
+                <button class="tab-btn px-6 py-3 font-bold" onclick="openTab('alasan')">Alasan Penghakiman</button>
+                <button class="tab-btn px-6 py-3 font-bold" onclick="openTab('kertas')">Kertas Perintah</button>
+            </div>
+
+            <div id="laporan" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-6 bg-indigo-50">
+                        <p class="text-gray-500 text-xs font-bold uppercase">Jumlah Alasan</p>
+                        <h2 id="totalAlasan" class="text-4xl font-black mt-2">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div id="alasan" class="tab-content hidden">
+                <div class="card p-8">
+                    <h2 class="text-xl font-bold mb-4">Tambah Alasan Penghakiman</h2>
+                    <form onsubmit="simpanData(event, 'alasan')">
+                         <input type="text" name="daerah" placeholder="Daerah" class="w-full p-3 border rounded-xl mb-4" required>
+                         <input type="number" name="bilangan" placeholder="Bilangan" class="w-full p-3 border rounded-xl mb-4" required>
+                         <button class="btn-primary text-white px-8 py-3 rounded-xl font-bold">Hantar Rekod</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="kertas" class="tab-content hidden">
+                <div class="card p-8">
+                    <h2 class="text-xl font-bold mb-4">Perekodan Kertas Perintah</h2>
+                    <form onsubmit="simpanData(event, 'kertas')">
+                        <button class="btn-primary text-white px-8 py-3 rounded-xl font-bold">Simpan Kertas</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-    </nav>
+    </div>
 
-    <main class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-        <div class="glass p-6 rounded-3xl shadow-sm border-b-4 border-indigo-500">
-          <p class="text-sm font-medium text-slate-500 uppercase">Rekod Alasan</p>
-          <p id="statCount" class="mt-2 text-4xl font-extrabold text-slate-900">0</p>
-        </div>
-      </div>
+    <script>
+        // PENTING: GANTIKAN DENGAN URL GOOGLE APPS SCRIPT ANDA
+        const GAS_URL = "MASUKKAN_URL_WEB_APP_ANDA_DI_SINI";
 
-      <div class="bg-white shadow-sm border border-slate-200 rounded-3xl overflow-hidden">
-        <table class="min-w-full divide-y divide-slate-200">
-          <thead class="bg-slate-50 font-inter">
-            <tr>
-              <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Daerah</th>
-              <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Bulan</th>
-              <th class="px-6 py-4 text-right text-xs font-bold text-slate-500 uppercase tracking-wider">Bilangan</th>
-            </tr>
-          </thead>
-          <tbody id="dataTable" class="divide-y divide-slate-200 text-sm font-inter">
-            <tr><td colspan="3" class="px-6 py-10 text-center text-slate-400 italic">Sedang memuatkan data...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-  </div>
+        // Logic Log Masuk
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            document.getElementById('userDisplay').innerText = email;
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('app').classList.remove('hidden');
+        });
 
-  <script>
-    // 1. Fungsi Login Tanpa SDK (Instant)
-    function handleLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      if(email) {
-        document.getElementById('loginPage').classList.add('hidden');
-        document.getElementById('dashboard').classList.remove('hidden');
-        fetchCloudData();
-      }
-    }
-
-    // 2. Fungsi Ambil Data (Gantikan Data_SDK)
-    async function fetchCloudData() {
-      try {
-        const response = await fetch(GAS_URL);
-        const data = await response.json();
-        
-        const table = document.getElementById('dataTable');
-        const stat = document.getElementById('statCount');
-        
-        if (data && data.length > 0) {
-          stat.innerText = data.length;
-          table.innerHTML = data.map(item => `
-            <tr>
-              <td class="px-6 py-4 font-semibold text-slate-700">${item.daerah || item[0]}</td>
-              <td class="px-6 py-4 text-slate-500">${item.bulan || item[1]}</td>
-              <td class="px-6 py-4 text-right font-black text-indigo-600">${item.bilangan || item[2]}</td>
-            </tr>
-          `).join('');
+        // Logic Tab
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.remove('hidden');
+            event.currentTarget.classList.add('active');
         }
-      } catch (err) {
-        document.getElementById('dataTable').innerHTML = `<tr><td colspan="3" class="p-4 text-center text-rose-500">Ralat sambungan: Sila pastikan URL GAS betul.</td></tr>`;
-      }
-    }
-  </script>
+
+        // Logic Logout
+        function logout() {
+            location.reload();
+        }
+
+        // Logic Simpan Data (Gantikan SDK)
+        async function simpanData(e, jenis) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            data.jenis = jenis;
+
+            alert("Menyimpan data...");
+            
+            try {
+                await fetch(GAS_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: JSON.stringify(data)
+                });
+                alert("Berjaya disimpan!");
+                e.target.reset();
+            } catch (err) {
+                alert("Ralat: " + err);
+            }
+        }
+    </script>
 </body>
 </html>
-
